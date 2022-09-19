@@ -117,15 +117,12 @@ export default {
             .then(() => {
               let indice = this.produtos.findIndex((p) => p.id == produto.id);
               this.produtos.splice(indice, 1);
-
-              setTimeout(() => {
-                this.$swal({
-                  icon: "success",
-                  title: "Produto excluido com sucesso!",
-                  confirmButtonColor: "#2962ff",
-                  animate: true,
-                });
-              }, 500);
+              this.$swal({
+                icon: "success",
+                title: "Produto excluido com sucesso!",
+                confirmButtonColor: "#2962ff",
+                animate: true,
+              });
             })
             .catch((error) => {
               console.log(error);
