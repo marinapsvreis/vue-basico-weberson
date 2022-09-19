@@ -51,6 +51,15 @@ const routes = [
       requiredAuth: true
     }
   },
+  {
+    path: '/controle-de-produtos/editar',
+    name: 'EditarProduto',
+    component: Produto,
+    title: 'Editar produto',
+    meta: {
+      requiredAuth: true
+    }
+  },
 ]
 
 export default routes;

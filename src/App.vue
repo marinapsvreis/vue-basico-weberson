@@ -73,6 +73,7 @@ export default {
 .btn-primary:focus,
 .btn-primary:focus-visible,
 .btn-primary:visited,
+.btn-primary:target,
 .btn-primary:not(:disabled):not(.disabled):active {
   color: #fff;
   background-color: var(--cor-primaria);

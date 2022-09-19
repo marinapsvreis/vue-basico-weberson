@@ -35,11 +35,11 @@
               <td>{{ item.dataCadastro | data }}</td>
               <td>
                 <i
-                  @click="editarProduto"
+                  @click="editarProduto(item)"
                   class="fas fa-pencil-alt icones-tabela"
                 ></i>
                 <i
-                  @click="excluirProduto"
+                  @click="excluirProduto(item)"
                   class="fas fa-trash-alt icones-tabela"
                 ></i>
               </td>
@@ -89,8 +89,11 @@ export default {
     adicionarProduto() {
       this.$router.push({ name: "NovoProduto" });
     },
-    editarProduto() {
-      alert("Editar Produto");
+    editarProduto(produto) {
+      this.$router.push({
+        name: "EditarProduto",
+        params: { id: produto.id },
+      });
     },
     excluirProduto() {
       alert("Excluir Produto");
