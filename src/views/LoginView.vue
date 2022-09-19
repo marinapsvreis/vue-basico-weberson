@@ -35,7 +35,6 @@ export default {
 <style scoped>
 .box-login {
   width: 400px;
-  /* height: 500px; */
 
   margin: auto;
   margin-top: 220px;

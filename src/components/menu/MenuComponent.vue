@@ -48,14 +48,17 @@ li {
   padding: 20px;
   font-size: 20px;
   cursor: pointer;
+  color: #fff;
 }
 
 li:hover {
   background-color: var(--cor-secundaria);
+  color: #000;
 }
 
-li:hover a {
-  color: #000;
+li a {
+  text-decoration: none;
+  text-align: center;
 }
 
 li:first-child {
@@ -67,11 +70,5 @@ li:last-child {
   right: 0;
   text-align: right;
   margin-right: 20px;
-}
-
-li a {
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
 }
 </style>

@@ -35,4 +35,28 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
+.container {
+  margin-top: 30px;
+}
+
+.titulo {
+  font-weight: 600;
+  color: #363636;
+}
+
+.button-principal {
+  width: 180px;
+}
+
+.linha-separadora {
+  margin-inline: -15px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.table-row {
+  margin-top: -5px;
+  margin-inline: -30px;
+}
 </style>
