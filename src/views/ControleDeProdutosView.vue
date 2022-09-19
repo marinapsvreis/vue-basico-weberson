@@ -21,6 +21,7 @@
               <th>Código</th>
               <th>Nome</th>
               <th>Valor</th>
+              <th>Quantidade</th>
               <th>Data de cadastro</th>
               <th>-</th>
             </tr>
