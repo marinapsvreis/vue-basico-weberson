@@ -5,7 +5,7 @@
       <router-link to="/about">About</router-link>
     </nav> -->
 
-    <Menu />
+    <Menu v-if="this.$router.currentRoute.name != 'LoginView'" />
 
     <router-view />
   </div>

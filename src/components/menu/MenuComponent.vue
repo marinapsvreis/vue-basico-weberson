@@ -46,7 +46,7 @@ li {
   align-items: center;
   height: 50px;
   padding: 20px;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
 }
 
