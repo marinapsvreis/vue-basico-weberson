@@ -108,7 +108,7 @@
 <script>
 import Produto from "@/models/Produto";
 import produtoService from "@/services/produto-service";
-import conversorDeData from "@/utils/conversor-data";
+// import conversorDeData from "@/utils/conversor-data";
 
 export default {
   name: "ProdutoView",
@@ -132,7 +132,6 @@ export default {
       produtoService
         .obterPorId(id)
         .then((response) => {
-          
           this.produto = new Produto(response.data);
         })
         .catch((error) => console.log(error));
@@ -150,10 +149,10 @@ export default {
         return;
       }
 
-      this.produto.dataCadastro =
-        conversorDeData.aplicarMascaraISOEmFormatoAmericano(
-          this.produto.dataCadastro
-        );
+      // this.produto.dataCadastro =
+      //   conversorDeData.aplicarMascaraISOEmFormatoAmericano(
+      //     this.produto.dataCadastro
+      //   );
 
       produtoService
         .cadastrar(this.produto)

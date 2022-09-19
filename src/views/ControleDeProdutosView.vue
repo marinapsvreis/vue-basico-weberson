@@ -95,8 +95,24 @@ export default {
         params: { id: produto.id },
       });
     },
-    excluirProduto() {
-      alert("Excluir Produto");
+    excluirProduto(produto) {
+      if (
+        confirm(`Deseja excluir o produto "${produto.id} - ${produto.nome}"`)
+      ) {
+        produtoService
+          .deletar(produto.id)
+          .then(() => {
+            let indice = this.produtos.findIndex((p) => p.id == produto.id);
+            this.produtos.splice(indice, 1);
+
+            setTimeout(() => {
+              alert("Produto excluido com sucesso!");
+            }, 500);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
   },
   mounted() {
