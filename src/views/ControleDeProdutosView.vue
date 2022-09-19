@@ -77,12 +77,16 @@ export default {
     };
   },
   methods: {
+    ordenarProdutos(a, b) {
+      return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+    },
     obterTodosOsProdutos() {
       produtoService
         .obterTodos()
         .then((response) => {
-          this.produtos = response.data.map((p) => new Produto(p));
-          // console.log(this.produtos);
+          let produtos = response.data.map((p) => new Produto(p));
+
+          this.produtos = produtos.sort(this.ordenarProdutos).reverse();
         })
         .catch((error) => console.log(error));
     },
