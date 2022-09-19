@@ -15,7 +15,7 @@
 
     <div class="row table-row">
       <div class="col-sm-12">
-        <table class="table">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th>Código</th>
@@ -26,6 +26,16 @@
               <th>-</th>
             </tr>
           </thead>
+          <tbody>
+            <tr v-for="item in produtos" :key="item.id">
+              <td>{{ item.id }}</td>
+              <td>{{ item.nome }}</td>
+              <td>{{ item.valor }}</td>
+              <td>{{ item.quantidadeEstoque }}</td>
+              <td>{{ item.dataCadastro }}</td>
+              <td>Editar / Excluir</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -34,6 +44,8 @@
 
 <script>
 import ButtonComponent from "@/components/button/ButtonComponent.vue";
+import produtoService from "@/services/produto-service";
+import Produto from "@/models/Produto";
 
 export default {
   name: "ControleDeProdutosView",
@@ -42,8 +54,22 @@ export default {
   },
   data() {
     return {
-      mensagem: "Esta é a tela Controle de Produtos",
+      produtos: [],
     };
+  },
+  methods: {
+    obterTodosOsProdutos() {
+      produtoService
+        .obterTodos()
+        .then((response) => {
+          this.produtos = response.data.map((p) => new Produto(p));
+          // console.log(this.produtos);
+        })
+        .catch((error) => console.log(error));
+    },
+  },
+  mounted() {
+    this.obterTodosOsProdutos();
   },
 };
 </script>

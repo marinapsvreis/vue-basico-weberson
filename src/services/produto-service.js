@@ -1,7 +1,7 @@
 import api from './api';
 
 function obterTodos() {
-  return new Promisse((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     return api.get('/produtos')
       .then(response => resolve(response))
       .catch(error => reject(error));
@@ -9,7 +9,7 @@ function obterTodos() {
 }
 
 function obterPorId(id) {
-  return new Promisse((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     return api.get(`/produtos/${id}`)
       .then(response => resolve(response))
       .catch(error => reject(error));
@@ -17,7 +17,7 @@ function obterPorId(id) {
 }
 
 function cadastrar(produto) {
-  return new Promisse((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     return api.post('/produtos', produto)
       .then(response => resolve(response))
       .catch(error => reject(error));
@@ -25,7 +25,7 @@ function cadastrar(produto) {
 }
 
 function atualizar(id, produto) {
-  return new Promisse((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     return api.put(`/produtos/${id}`, produto)
       .then(response => resolve(response))
       .catch(error => reject(error));
@@ -33,7 +33,7 @@ function atualizar(id, produto) {
 }
 
 function deletar(id) {
-  return new Promisse((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     return api.delete(`/produtos/${id}`)
       .then(response => resolve(response))
       .catch(error => reject(error));
