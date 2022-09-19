@@ -9,7 +9,7 @@
 
     <div class="row">
       <div class="button-principal">
-        <ButtonComponent value="Adicionar" />
+        <ButtonComponent :callback="adicionarProduto" value="Adicionar" />
       </div>
     </div>
 
@@ -20,20 +20,29 @@
             <tr>
               <th>Código</th>
               <th>Nome</th>
-              <th>Valor</th>
               <th>Quantidade</th>
+              <th>Valor</th>
               <th>Data de cadastro</th>
-              <th>-</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="item in produtos" :key="item.id">
               <td>{{ item.id }}</td>
               <td>{{ item.nome }}</td>
-              <td>{{ item.valor }}</td>
               <td>{{ item.quantidadeEstoque }}</td>
-              <td>{{ item.dataCadastro }}</td>
-              <td>Editar / Excluir</td>
+              <td>{{ item.valor | real }}</td>
+              <td>{{ item.dataCadastro | data }}</td>
+              <td>
+                <i
+                  @click="editarProduto"
+                  class="fas fa-pencil-alt icones-tabela"
+                ></i>
+                <i
+                  @click="excluirProduto"
+                  class="fas fa-trash-alt icones-tabela"
+                ></i>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -46,11 +55,21 @@
 import ButtonComponent from "@/components/button/ButtonComponent.vue";
 import produtoService from "@/services/produto-service";
 import Produto from "@/models/Produto";
+import conversorDeData from "@/utils/conversor-data";
+import conversorMonetario from "@/utils/conversor-monetario";
 
 export default {
   name: "ControleDeProdutosView",
   components: {
     ButtonComponent,
+  },
+  filters: {
+    data(data) {
+      return conversorDeData.aplicarMascaraDataHoraEmDataIso(data);
+    },
+    real(valor) {
+      return conversorMonetario.aplicarMascaraParaRealComPrefixo(valor);
+    },
   },
   data() {
     return {
@@ -66,6 +85,15 @@ export default {
           // console.log(this.produtos);
         })
         .catch((error) => console.log(error));
+    },
+    adicionarProduto() {
+      this.$router.push({ name: "NovoProduto" });
+    },
+    editarProduto() {
+      alert("Editar Produto");
+    },
+    excluirProduto() {
+      alert("Excluir Produto");
     },
   },
   mounted() {

@@ -2,6 +2,7 @@ import Login from '@/views/LoginView.vue';
 import Dashboard from '@/views/DashboardView.vue';
 import ControleDeProdutos from '@/views/ControleDeProdutosView.vue';
 import ControleDeClientes from '@/views/ControleDeClientesView.vue';
+import Produto from '@/views/ProdutoView.vue';
 
 const routes = [
   {
@@ -37,6 +38,15 @@ const routes = [
     name: 'ControleDeClientesView',
     component: ControleDeClientes,
     title: 'Clientes',
+    meta: {
+      requiredAuth: true
+    }
+  },
+  {
+    path: '/controle-de-produtos/novo',
+    name: 'NovoProduto',
+    component: Produto,
+    title: 'Adicionar produto',
     meta: {
       requiredAuth: true
     }

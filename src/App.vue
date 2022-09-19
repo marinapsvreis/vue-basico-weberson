@@ -59,4 +59,10 @@ export default {
   margin-top: -5px;
   margin-inline: -30px;
 }
+
+.icones-tabela {
+  margin: 7px;
+  cursor: pointer;
+  color: var(--cor-primaria);
+}
 </style>
