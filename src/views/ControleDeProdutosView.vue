@@ -100,23 +100,38 @@ export default {
       });
     },
     excluirProduto(produto) {
-      if (
-        confirm(`Deseja excluir o produto "${produto.id} - ${produto.nome}"`)
-      ) {
-        produtoService
-          .deletar(produto.id)
-          .then(() => {
-            let indice = this.produtos.findIndex((p) => p.id == produto.id);
-            this.produtos.splice(indice, 1);
+      this.$swal({
+        icon: "question",
+        title: `Deseja excluir o produto?`,
+        text: `Código: ${produto.id} - Nome: ${produto.nome}`,
+        showCancelButton: true,
+        confirmButtonColor: "#2962ff",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
+        anime: true,
+      }).then((result) => {
+        console.log(result);
+        if (result.isConfirmed) {
+          produtoService
+            .deletar(produto.id)
+            .then(() => {
+              let indice = this.produtos.findIndex((p) => p.id == produto.id);
+              this.produtos.splice(indice, 1);
 
-            setTimeout(() => {
-              alert("Produto excluido com sucesso!");
-            }, 500);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
+              setTimeout(() => {
+                this.$swal({
+                  icon: "success",
+                  title: "Produto excluido com sucesso!",
+                  confirmButtonColor: "#2962ff",
+                  animate: true,
+                });
+              }, 500);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      });
     },
   },
   mounted() {
