@@ -108,6 +108,7 @@
 <script>
 import Produto from "@/models/Produto";
 import produtoService from "@/services/produto-service";
+import conversorDeData from "@/utils/conversor-data";
 
 export default {
   name: "ProdutoView",
@@ -131,6 +132,7 @@ export default {
       produtoService
         .obterPorId(id)
         .then((response) => {
+          
           this.produto = new Produto(response.data);
         })
         .catch((error) => console.log(error));
@@ -148,6 +150,11 @@ export default {
         return;
       }
 
+      this.produto.dataCadastro =
+        conversorDeData.aplicarMascaraISOEmFormatoAmericano(
+          this.produto.dataCadastro
+        );
+
       produtoService
         .cadastrar(this.produto)
         .then(() => {
@@ -163,7 +170,9 @@ export default {
     },
     atualizarProduto() {
       if (!this.produto.modeloValidoParaAtualizar()) {
-        alert("O id e o nome do produto são obrigatórios para a atualização");
+        alert(
+          "O código e o nome do produto são obrigatórios para a atualização."
+        );
         return;
       }
 

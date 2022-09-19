@@ -65,7 +65,7 @@ export default {
   },
   filters: {
     data(data) {
-      return conversorDeData.aplicarMascaraDataHoraEmDataIso(data);
+      return conversorDeData.aplicarMascaraEmDataIso(data);
     },
     real(valor) {
       return conversorMonetario.aplicarMascaraParaRealComPrefixo(valor);
