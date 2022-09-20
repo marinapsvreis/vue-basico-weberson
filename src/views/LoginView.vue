@@ -24,6 +24,7 @@ import InputComponent from "@/components/input/InputComponent.vue";
 import ButtonComponent from "@/components/button/ButtonComponent.vue";
 import Usuario from "@/models/Usuario";
 import usuarioService from "@/services/usuario-service";
+import utilsStore from "@/utils/storage";
 
 export default {
   name: "LoginView",
@@ -51,13 +52,15 @@ export default {
       usuarioService
         .login(this.usuario.email, this.usuario.senha)
         .then((response) => {
-          console.log(response);
+          this.usuario = new Usuario(response.data.usuario);
+          utilsStore.salvarUsuarioNaStorage(this.usuario);
+          utilsStore.salvarTokenNaStorage(response.data.token);
+
+          this.$router.push({ name: "DashboardView" });
         })
         .catch((error) => {
           console.log(error);
         });
-
-      this.$router.push({ name: "DashboardView" });
     },
   },
 };
