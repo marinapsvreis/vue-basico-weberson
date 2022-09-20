@@ -1,20 +1,32 @@
 <template>
   <div class="box-input">
     <label for="">{{ label }}</label> <br />
-    <input :type="type" :placeholder="placeHolder" />
+    <input :type="type" :placeholder="placeHolder" v-model="valor" />
   </div>
 </template>
 
 <script>
 export default {
   name: "InputComponent",
+  model: {
+    prop: "value",
+    event: "onChange",
+  },
   props: {
     label: { type: String, require },
     placeHolder: { type: String },
     type: { type: String, default: "text" },
+    value: { type: String, default: "" },
   },
   data() {
-    return {};
+    return {
+      valor: this.value,
+    };
+  },
+  watch: {
+    valor() {
+      this.$emit("onChange", this.valor);
+    },
   },
 };
 </script>

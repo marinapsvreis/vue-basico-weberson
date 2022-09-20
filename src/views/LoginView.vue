@@ -4,8 +4,17 @@
       <h1>Login</h1>
     </div>
 
-    <InputComponent label="E-mail" placeHolder="exemplo@gmail.com" />
-    <InputComponent label="Senha" placeHolder="123456" type="password" />
+    <InputComponent
+      label="E-mail"
+      placeHolder="exemplo@gmail.com"
+      v-model="usuario.email"
+    />
+    <InputComponent
+      label="Senha"
+      placeHolder="123456"
+      type="password"
+      v-model="usuario.senha"
+    />
     <ButtonComponent value="Entrar" :callback="login" />
   </div>
 </template>
@@ -21,7 +30,12 @@ export default {
     ButtonComponent,
   },
   data() {
-    return {};
+    return {
+      usuario: {
+        email: "",
+        senha: "",
+      },
+    };
   },
   methods: {
     login() {
