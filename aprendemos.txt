@@ -1,0 +1,46 @@
+O que aprendemos durante o curso?
+
+1) Entendemos o que é o Vue.js e como ele funciona.
+
+2) Como criar projetos utilizando o Vue UI.
+
+3) Conhecemos e criamos a estrutura dos projetos, pastas e outros.
+
+4) Conhecer as principais diretivas do Vue.js:
+  * v-for
+  * v-if
+  * v-show
+  * v-model
+
+5) Aprendemos e dominamos a criação de componentes.
+  * com props
+  * com filters
+  * com emissão de eventos
+  * com v-model
+  * com slots
+  * renderização condicional
+  * interpolação
+  * reaproveitamento de componentes
+  * aprendemos utilizar models
+
+6) Trabalhar com vue-router (SPA)
+  * Aprendemos a trabalhar com services
+
+7) Aprendemos a criar e utilizar os "utils".
+  * Conversor de data (moment)
+  * Conversor de moeda
+
+8) Aprendemos a criar componentes com HTML, CSS puro (MENU).
+
+9) Aprendemos a usar o minimo de css de um outro plugin (Bootstrap.css).
+
+10) Usamos Sweetalert2.
+
+11) Boas praticas, reutilização de código e etc...
+
+***Sugestão de evolução***
+
+> Implementar todo o CRUD de clientes.
+> Criar um componente de tabela genérica onde eu possa passar um array de colunas e um array de itens, montando tudo dinamicamente.
+> Fazer com que cada coluna da tabela seja ordenável.
+> Deixar a criatividade falar mais alto, fazer o que quiser no projeto.
