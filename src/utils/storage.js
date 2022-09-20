@@ -15,7 +15,7 @@ function salvarTokenNaStorage(token) {
 }
 
 function obterTokenNaStorage() {
-  localStorage.getItem('token');
+  return localStorage.getItem('token');
 }
 
 function removerUsuarioNaStorage() {
