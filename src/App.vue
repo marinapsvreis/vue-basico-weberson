@@ -66,6 +66,18 @@ export default {
   color: var(--cor-primaria);
 }
 
+.linha-bootstrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-extra {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 15px;
+}
+
 /* Override */
 
 .btn-primary,

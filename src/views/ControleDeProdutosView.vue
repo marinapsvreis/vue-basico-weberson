@@ -7,9 +7,14 @@
 
     <hr class="linha-separadora" />
 
-    <div class="row">
+    <div class="row linha-bootstrap">
       <div class="button-principal">
         <ButtonComponent :callback="adicionarProduto" value="Adicionar" />
+      </div>
+      <div class="button-extra">
+        <a @click="verProdutosEmCards" href="" class="ver-em-cards"
+          >Ver em cards</a
+        >
       </div>
     </div>
 
@@ -53,86 +58,24 @@
 
 <script>
 import ButtonComponent from "@/components/button/ButtonComponent.vue";
-import produtoService from "@/services/produto-service";
-import Produto from "@/models/Produto";
-import conversorDeData from "@/utils/conversor-data";
-import conversorMonetario from "@/utils/conversor-monetario";
+import ProdutoMixin from "@/mixins/produto-mixin";
 
 export default {
   name: "ControleDeProdutosView",
+  mixins: [ProdutoMixin],
   components: {
     ButtonComponent,
   },
-  filters: {
-    data(data) {
-      return conversorDeData.aplicarMascaraEmDataIso(data);
-    },
-    real(valor) {
-      return conversorMonetario.aplicarMascaraParaRealComPrefixo(valor);
-    },
-  },
   data() {
-    return {
-      produtos: [],
-    };
+    return {};
   },
   methods: {
-    ordenarProdutos(a, b) {
-      return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
-    },
-    obterTodosOsProdutos() {
-      produtoService
-        .obterTodos()
-        .then((response) => {
-          let produtos = response.data.map((p) => new Produto(p));
-
-          this.produtos = produtos.sort(this.ordenarProdutos).reverse();
-        })
-        .catch((error) => console.log(error));
-    },
     adicionarProduto() {
       this.$router.push({ name: "NovoProduto" });
     },
-    editarProduto(produto) {
-      this.$router.push({
-        name: "EditarProduto",
-        params: { id: produto.id },
-      });
+    verProdutosEmCards() {
+      this.$router.push({ name: "ListaProdutosCard" });
     },
-    excluirProduto(produto) {
-      this.$swal({
-        icon: "question",
-        title: `Deseja excluir o produto?`,
-        text: `Código: ${produto.id} - Nome: ${produto.nome}`,
-        showCancelButton: true,
-        confirmButtonColor: "#2962ff",
-        confirmButtonText: "Sim",
-        cancelButtonText: "Não",
-        anime: true,
-      }).then((result) => {
-        console.log(result);
-        if (result.isConfirmed) {
-          produtoService
-            .deletar(produto.id)
-            .then(() => {
-              let indice = this.produtos.findIndex((p) => p.id == produto.id);
-              this.produtos.splice(indice, 1);
-              this.$swal({
-                icon: "success",
-                title: "Produto excluido com sucesso!",
-                confirmButtonColor: "#2962ff",
-                animate: true,
-              });
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
-      });
-    },
-  },
-  mounted() {
-    this.obterTodosOsProdutos();
   },
 };
 </script>

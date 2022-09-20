@@ -2,6 +2,7 @@ import Login from '@/views/LoginView.vue';
 import Dashboard from '@/views/DashboardView.vue';
 import ControleDeProdutos from '@/views/ControleDeProdutosView.vue';
 import ControleDeClientes from '@/views/ControleDeClientesView.vue';
+import ListaProdutosCard from '@/views/ListaProdutosCardView.vue';
 import Produto from '@/views/ProdutoView.vue';
 
 const routes = [
@@ -56,6 +57,15 @@ const routes = [
     name: 'EditarProduto',
     component: Produto,
     title: 'Editar produto',
+    meta: {
+      requiredAuth: true
+    }
+  },
+  {
+    path: '/controle-de-produtos/lista-cards',
+    name: 'ListaProdutosCard',
+    component: ListaProdutosCard,
+    title: 'Cards de produtos',
     meta: {
       requiredAuth: true
     }
