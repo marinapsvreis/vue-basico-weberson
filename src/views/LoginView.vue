@@ -22,6 +22,8 @@
 <script>
 import InputComponent from "@/components/input/InputComponent.vue";
 import ButtonComponent from "@/components/button/ButtonComponent.vue";
+import Usuario from "@/models/Usuario";
+import usuarioService from "@/services/usuario-service";
 
 export default {
   name: "LoginView",
@@ -31,15 +33,30 @@ export default {
   },
   data() {
     return {
-      usuario: {
-        email: "",
-        senha: "",
-      },
+      usuario: new Usuario(),
     };
   },
   methods: {
     login() {
-      //criar uma lógica para acessar o sistema
+      if (!this.usuario.modeloValidoLogin()) {
+        this.$swal({
+          icon: "warning",
+          title: `Email e senha são obrigatórios.`,
+          confirmButtonColor: "#2962ff",
+          anime: true,
+        });
+        return;
+      }
+
+      usuarioService
+        .login(this.usuario.email, this.usuario.senha)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
       this.$router.push({ name: "DashboardView" });
     },
   },
